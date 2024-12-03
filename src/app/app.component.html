@@ -1,0 +1,62 @@
+<div class="inspection-container" style="height: 1000px;">
+  <h2 style="text-align: center;">Flight Booking</h2>
+  <div class="table-wrapper" style=" text-align: center;">
+    <table class="styled-table" style="margin-left: 50px;">
+      <thead>
+        <tr>
+          <th>Flight Number </th>
+          <th>Airline</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Book</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let f of allflight">
+          <td>{{f.flight_number}}</td>
+          <td>{{f.airline}}</td>
+          <td>{{f.source}}</td>
+          <td>{{f.destination}}</td>
+          <td>
+            <button class="btn btn-primary" (click)="openForm(f)">Book</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<div class="container mt-5 " *ngIf="selectedFlight"  style="margin-left: 40px;">
+  <div class="card">
+    <div class="card-header">
+      <h3>Enter  Details</h3>
+    </div>
+    <div class="card-body">
+        <form (ngSubmit)="completeBooking()" #detailsForm="ngForm" > 
+        <div class="row">
+          <div class="col-md-6">
+            <label class="form-label">  Name:</label>
+            <input type="text" class="form-control" [(ngModel)]="name" name="name" required/>
+          </div>
+          <div class="col-md-6">
+            <label class="form-label">  Contact:</label>
+            <input type="text" class="form-control" [(ngModel)]="contact" name="contact" required/>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col-md-6">
+            <label class="form-label">No. of Passangers</label>
+            <input type="text" class="form-control" [(ngModel)]="no_of_passangers" name="no_of_passangers" required/>
+          </div> 
+          <div class="col-md-6">
+            <label class="form-label">Date of Journey:</label>
+            <input type="date" class="form-control" [(ngModel)]="date_of_journey" name="date_of_journey" required/>
+          </div> 
+        </div>
+        </form>
+    </div>
+    <div class="card-footer text-end">
+      <button  class="btn btn-primary" (click)="completeBooking()" [disabled]="!detailsForm.valid">Submit</button>
+    </div>
+  </div>
+</div>
+
+</div>
